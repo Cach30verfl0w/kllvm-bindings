@@ -1,5 +1,5 @@
-/**
- * Copyright 2024 Cedric Hammes
+/*
+ * Copyright $year Cedric Hammes
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,17 +15,13 @@
 
 package de.cacheoverflow.llvm
 
-import io.karma.dlfcn.SharedLibrary
-import kotlinx.io.files.Path
-
-internal var library: SharedLibrary? = null
-
-internal actual fun loadLLVM0(basePath: Path, libraryFileName: String): Boolean {
-    library = SharedLibrary.open(Path(basePath, "lib", "lib${libraryFileName}.so").toString()) ?: return false
-    return true
-}
-
-internal actual fun unloadLLVM0() {
-    requireNotNull(library).close()
-    library = null
+/**
+ * @author Cedric Hammes
+ * @since  12/12/2024
+ */
+expect class LLVMFunctions() {
+    fun createContext(): Long
+    fun disposeContext(handle: Long)
+    fun createModule(context: Long, name: String): Long
+    fun disposeModule(handle: Long)
 }

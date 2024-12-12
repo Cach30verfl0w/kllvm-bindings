@@ -35,6 +35,8 @@ object LLVM : AutoCloseable {
     private val VERSIONS: ByteArray = byteArrayOf(20, 19, 18, 17, 16)
     private var isLoaded: Boolean = true
     
+    val functions: LLVMFunctions
+    
     val basePath: Path = run {
         if (PLATFORM == Platform.WINDOWS) Path("C:\\Program Files\\LLVM\\bin") else {
             val separator = SystemPathSeparator.toString()
@@ -72,6 +74,7 @@ object LLVM : AutoCloseable {
         if (!loadLLVM0(basePath, libraryFileName)) {
             throw RuntimeException("Unable to load LLVM")
         }
+        functions = LLVMFunctions()
     }
     
     override fun close() {
