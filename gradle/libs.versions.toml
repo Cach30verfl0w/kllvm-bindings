@@ -1,0 +1,16 @@
+[versions]
+kllvm = "1.0.0"
+kotlin = "2.1.0" # https://kotlinlang.org/docs/releases.html#release-details
+lwjgl = "3.3.4" # https://github.com/LWJGL/lwjgl3/releases
+kotlinx-io = "0.6.0" # https://github.com/Kotlin/kotlinx-io/releases
+dlfcn = "1.1.0.15"
+
+[libraries]
+lwjgl-base = { module = "org.lwjgl:lwjgl", version.ref = "lwjgl" }
+lwjgl-llvm = { module = "org.lwjgl:lwjgl-llvm", version.ref = "lwjgl" }
+lwjgl-rpmalloc = { module = "org.lwjgl:lwjgl-rpmalloc", version.ref = "lwjgl" }
+dlfcn = { module = "io.karma.dlfcn:multiplatform-dlfcn", version.ref = "dlfcn" }
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
